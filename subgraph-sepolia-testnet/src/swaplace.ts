@@ -9,8 +9,9 @@ export function handleSwapAccepted(event: SwapAcceptedEvent): void {
   let entity = new SwapAccepted(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.Swaplace_id = event.params.id
-  entity.accepter = event.params.accepter
+  entity.swapId = event.params.swapId
+  entity.owner = event.params.owner
+  entity.allowed = event.params.allowed
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -23,8 +24,8 @@ export function handleSwapCanceled(event: SwapCanceledEvent): void {
   let entity = new SwapCanceled(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.Swaplace_id = event.params.id
-  entity.canceler = event.params.canceler
+  entity.swapId = event.params.swapId
+  entity.owner = event.params.owner
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -37,9 +38,9 @@ export function handleSwapCreated(event: SwapCreatedEvent): void {
   let entity = new SwapCreated(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.Swaplace_id = event.params.id
+  entity.swapId = event.params.swapId
   entity.owner = event.params.owner
-  entity.expiry = event.params.expiry
+  entity.allowed = event.params.allowed
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

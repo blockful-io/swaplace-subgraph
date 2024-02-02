@@ -17,11 +17,12 @@ import { createSwapAcceptedEvent } from "./swaplace-utils"
 
 describe("Describe entity assertions", () => {
   beforeAll(() => {
-    let id = BigInt.fromI32(234)
-    let accepter = Address.fromString(
+    let swapId = BigInt.fromI32(234)
+    let owner = Address.fromString("0x0000000000000000000000000000000000000001")
+    let allowed = Address.fromString(
       "0x0000000000000000000000000000000000000001"
     )
-    let newSwapAcceptedEvent = createSwapAcceptedEvent(id, accepter)
+    let newSwapAcceptedEvent = createSwapAcceptedEvent(swapId, owner, allowed)
     handleSwapAccepted(newSwapAcceptedEvent)
   })
 
@@ -39,7 +40,19 @@ describe("Describe entity assertions", () => {
     assert.fieldEquals(
       "SwapAccepted",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "accepter",
+      "swapId",
+      "234"
+    )
+    assert.fieldEquals(
+      "SwapAccepted",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "owner",
+      "0x0000000000000000000000000000000000000001"
+    )
+    assert.fieldEquals(
+      "SwapAccepted",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "allowed",
       "0x0000000000000000000000000000000000000001"
     )
 

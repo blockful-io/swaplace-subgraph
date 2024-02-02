@@ -20,13 +20,19 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "id",
+        "name": "swapId",
         "type": "uint256"
       },
       {
         "indexed": true,
         "internalType": "address",
-        "name": "accepter",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "allowed",
         "type": "address"
       }
     ],
@@ -39,13 +45,13 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "id",
+        "name": "swapId",
         "type": "uint256"
       },
       {
         "indexed": true,
         "internalType": "address",
-        "name": "canceler",
+        "name": "owner",
         "type": "address"
       }
     ],
@@ -58,7 +64,7 @@
       {
         "indexed": true,
         "internalType": "uint256",
-        "name": "id",
+        "name": "swapId",
         "type": "uint256"
       },
       {
@@ -69,23 +75,28 @@
       },
       {
         "indexed": true,
-        "internalType": "uint256",
-        "name": "expiry",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "allowed",
+        "type": "address"
       }
     ],
     "name": "SwapCreated",
     "type": "event"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "inputs": [
+      { "internalType": "uint256", "name": "swapId", "type": "uint256" },
+      { "internalType": "address", "name": "receiver", "type": "address" }
+    ],
     "name": "acceptSwap",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "inputs": [
+      { "internalType": "uint256", "name": "swapId", "type": "uint256" }
+    ],
     "name": "cancelSwap",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -96,8 +107,7 @@
       {
         "components": [
           { "internalType": "address", "name": "owner", "type": "address" },
-          { "internalType": "address", "name": "allowed", "type": "address" },
-          { "internalType": "uint256", "name": "expiry", "type": "uint256" },
+          { "internalType": "uint256", "name": "config", "type": "uint256" },
           {
             "components": [
               { "internalType": "address", "name": "addr", "type": "address" },
@@ -136,14 +146,15 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "inputs": [
+      { "internalType": "uint256", "name": "swapId", "type": "uint256" }
+    ],
     "name": "getSwap",
     "outputs": [
       {
         "components": [
           { "internalType": "address", "name": "owner", "type": "address" },
-          { "internalType": "address", "name": "allowed", "type": "address" },
-          { "internalType": "uint256", "name": "expiry", "type": "uint256" },
+          { "internalType": "uint256", "name": "config", "type": "uint256" },
           {
             "components": [
               { "internalType": "address", "name": "addr", "type": "address" },
@@ -228,8 +239,7 @@
       {
         "components": [
           { "internalType": "address", "name": "owner", "type": "address" },
-          { "internalType": "address", "name": "allowed", "type": "address" },
-          { "internalType": "uint256", "name": "expiry", "type": "uint256" },
+          { "internalType": "uint256", "name": "config", "type": "uint256" },
           {
             "components": [
               { "internalType": "address", "name": "addr", "type": "address" },
@@ -267,6 +277,28 @@
   },
   {
     "inputs": [
+      { "internalType": "address", "name": "allowed", "type": "address" },
+      { "internalType": "uint256", "name": "expiry", "type": "uint256" }
+    ],
+    "name": "packData",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "config", "type": "uint256" }
+    ],
+    "name": "parseData",
+    "outputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
       { "internalType": "bytes4", "name": "interfaceID", "type": "bytes4" }
     ],
     "name": "supportsInterface",
@@ -276,7 +308,7 @@
   },
   {
     "inputs": [],
-    "name": "swapId",
+    "name": "totalSwaps",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"

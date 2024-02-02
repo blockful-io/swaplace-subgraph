@@ -7,58 +7,62 @@ import {
 } from "../generated/Swaplace/Swaplace"
 
 export function createSwapAcceptedEvent(
-  id: BigInt,
-  accepter: Address
+  swapId: BigInt,
+  owner: Address,
+  allowed: Address
 ): SwapAccepted {
   let swapAcceptedEvent = changetype<SwapAccepted>(newMockEvent())
 
   swapAcceptedEvent.parameters = new Array()
 
   swapAcceptedEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
+    new ethereum.EventParam("swapId", ethereum.Value.fromUnsignedBigInt(swapId))
   )
   swapAcceptedEvent.parameters.push(
-    new ethereum.EventParam("accepter", ethereum.Value.fromAddress(accepter))
+    new ethereum.EventParam("owner", ethereum.Value.fromAddress(owner))
+  )
+  swapAcceptedEvent.parameters.push(
+    new ethereum.EventParam("allowed", ethereum.Value.fromAddress(allowed))
   )
 
   return swapAcceptedEvent
 }
 
 export function createSwapCanceledEvent(
-  id: BigInt,
-  canceler: Address
+  swapId: BigInt,
+  owner: Address
 ): SwapCanceled {
   let swapCanceledEvent = changetype<SwapCanceled>(newMockEvent())
 
   swapCanceledEvent.parameters = new Array()
 
   swapCanceledEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
+    new ethereum.EventParam("swapId", ethereum.Value.fromUnsignedBigInt(swapId))
   )
   swapCanceledEvent.parameters.push(
-    new ethereum.EventParam("canceler", ethereum.Value.fromAddress(canceler))
+    new ethereum.EventParam("owner", ethereum.Value.fromAddress(owner))
   )
 
   return swapCanceledEvent
 }
 
 export function createSwapCreatedEvent(
-  id: BigInt,
+  swapId: BigInt,
   owner: Address,
-  expiry: BigInt
+  allowed: Address
 ): SwapCreated {
   let swapCreatedEvent = changetype<SwapCreated>(newMockEvent())
 
   swapCreatedEvent.parameters = new Array()
 
   swapCreatedEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromUnsignedBigInt(id))
+    new ethereum.EventParam("swapId", ethereum.Value.fromUnsignedBigInt(swapId))
   )
   swapCreatedEvent.parameters.push(
     new ethereum.EventParam("owner", ethereum.Value.fromAddress(owner))
   )
   swapCreatedEvent.parameters.push(
-    new ethereum.EventParam("expiry", ethereum.Value.fromUnsignedBigInt(expiry))
+    new ethereum.EventParam("allowed", ethereum.Value.fromAddress(allowed))
   )
 
   return swapCreatedEvent

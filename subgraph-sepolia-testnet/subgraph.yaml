@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Swaplace
-    network: localhost
+    network: sepolia
     source:
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      address: "0x24809b2b374c5d70c2BdA6d65290e3fa3a2b378d"
       abi: Swaplace
-      startBlock: 1
+      startBlock: 5206960
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -21,10 +21,10 @@ dataSources:
         - name: Swaplace
           file: ./abis/Swaplace.json
       eventHandlers:
-        - event: SwapAccepted(indexed uint256,indexed address)
+        - event: SwapAccepted(indexed uint256,indexed address,indexed address)
           handler: handleSwapAccepted
         - event: SwapCanceled(indexed uint256,indexed address)
           handler: handleSwapCanceled
-        - event: SwapCreated(indexed uint256,indexed address,indexed uint256)
+        - event: SwapCreated(indexed uint256,indexed address,indexed address)
           handler: handleSwapCreated
       file: ./src/swaplace.ts

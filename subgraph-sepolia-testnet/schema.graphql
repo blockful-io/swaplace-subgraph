@@ -1,7 +1,8 @@
 type SwapAccepted @entity(immutable: true) {
   id: Bytes!
-  Swaplace_id: BigInt! # uint256
-  accepter: Bytes! # address
+  swapId: BigInt! # uint256
+  owner: Bytes! # address
+  allowed: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -9,8 +10,8 @@ type SwapAccepted @entity(immutable: true) {
 
 type SwapCanceled @entity(immutable: true) {
   id: Bytes!
-  Swaplace_id: BigInt! # uint256
-  canceler: Bytes! # address
+  swapId: BigInt! # uint256
+  owner: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -18,9 +19,9 @@ type SwapCanceled @entity(immutable: true) {
 
 type SwapCreated @entity(immutable: true) {
   id: Bytes!
-  Swaplace_id: BigInt! # uint256
+  swapId: BigInt! # uint256
   owner: Bytes! # address
-  expiry: BigInt! # uint256
+  allowed: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
