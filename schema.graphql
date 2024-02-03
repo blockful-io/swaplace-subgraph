@@ -1,0 +1,28 @@
+type SwapAccepted @entity(immutable: true) {
+  id: Bytes!
+  swapId: BigInt! # uint256
+  owner: Bytes! # address
+  allowed: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SwapCanceled @entity(immutable: true) {
+  id: Bytes!
+  swapId: BigInt! # uint256
+  owner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SwapCreated @entity(immutable: true) {
+  id: Bytes!
+  swapId: BigInt! # uint256
+  owner: Bytes! # address
+  allowed: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
