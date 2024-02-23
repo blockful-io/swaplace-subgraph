@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class SwapAccepted extends ethereum.Event {
@@ -264,8 +264,8 @@ export class Swaplace extends ethereum.SmartContract {
       "acceptSwap(uint256,address):(bool)",
       [
         ethereum.Value.fromUnsignedBigInt(swapId),
-        ethereum.Value.fromAddress(receiver)
-      ]
+        ethereum.Value.fromAddress(receiver),
+      ],
     );
 
     return result[0].toBoolean();
@@ -273,15 +273,15 @@ export class Swaplace extends ethereum.SmartContract {
 
   try_acceptSwap(
     swapId: BigInt,
-    receiver: Address
+    receiver: Address,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "acceptSwap",
       "acceptSwap(uint256,address):(bool)",
       [
         ethereum.Value.fromUnsignedBigInt(swapId),
-        ethereum.Value.fromAddress(receiver)
-      ]
+        ethereum.Value.fromAddress(receiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -294,19 +294,19 @@ export class Swaplace extends ethereum.SmartContract {
     let result = super.call(
       "createSwap",
       "createSwap((address,uint256,(address,uint256)[],(address,uint256)[])):(uint256)",
-      [ethereum.Value.fromTuple(swap)]
+      [ethereum.Value.fromTuple(swap)],
     );
 
     return result[0].toBigInt();
   }
 
   try_createSwap(
-    swap: Swaplace__createSwapInputSwapStruct
+    swap: Swaplace__createSwapInputSwapStruct,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "createSwap",
       "createSwap((address,uint256,(address,uint256)[],(address,uint256)[])):(uint256)",
-      [ethereum.Value.fromTuple(swap)]
+      [ethereum.Value.fromTuple(swap)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -319,65 +319,65 @@ export class Swaplace extends ethereum.SmartContract {
     let result = super.call(
       "getSwap",
       "getSwap(uint256):((address,uint256,(address,uint256)[],(address,uint256)[]))",
-      [ethereum.Value.fromUnsignedBigInt(swapId)]
+      [ethereum.Value.fromUnsignedBigInt(swapId)],
     );
 
     return changetype<Swaplace__getSwapResultValue0Struct>(result[0].toTuple());
   }
 
   try_getSwap(
-    swapId: BigInt
+    swapId: BigInt,
   ): ethereum.CallResult<Swaplace__getSwapResultValue0Struct> {
     let result = super.tryCall(
       "getSwap",
       "getSwap(uint256):((address,uint256,(address,uint256)[],(address,uint256)[]))",
-      [ethereum.Value.fromUnsignedBigInt(swapId)]
+      [ethereum.Value.fromUnsignedBigInt(swapId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<Swaplace__getSwapResultValue0Struct>(value[0].toTuple())
+      changetype<Swaplace__getSwapResultValue0Struct>(value[0].toTuple()),
     );
   }
 
   makeAsset(
     addr: Address,
-    amountOrId: BigInt
+    amountOrId: BigInt,
   ): Swaplace__makeAssetResultValue0Struct {
     let result = super.call(
       "makeAsset",
       "makeAsset(address,uint256):((address,uint256))",
       [
         ethereum.Value.fromAddress(addr),
-        ethereum.Value.fromUnsignedBigInt(amountOrId)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amountOrId),
+      ],
     );
 
     return changetype<Swaplace__makeAssetResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_makeAsset(
     addr: Address,
-    amountOrId: BigInt
+    amountOrId: BigInt,
   ): ethereum.CallResult<Swaplace__makeAssetResultValue0Struct> {
     let result = super.tryCall(
       "makeAsset",
       "makeAsset(address,uint256):((address,uint256))",
       [
         ethereum.Value.fromAddress(addr),
-        ethereum.Value.fromUnsignedBigInt(amountOrId)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amountOrId),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<Swaplace__makeAssetResultValue0Struct>(value[0].toTuple())
+      changetype<Swaplace__makeAssetResultValue0Struct>(value[0].toTuple()),
     );
   }
 
@@ -386,7 +386,7 @@ export class Swaplace extends ethereum.SmartContract {
     allowed: Address,
     expiry: BigInt,
     biding: Array<Swaplace__makeSwapInputBidingStruct>,
-    asking: Array<Swaplace__makeSwapInputAskingStruct>
+    asking: Array<Swaplace__makeSwapInputAskingStruct>,
   ): Swaplace__makeSwapResultValue0Struct {
     let result = super.call(
       "makeSwap",
@@ -396,12 +396,12 @@ export class Swaplace extends ethereum.SmartContract {
         ethereum.Value.fromAddress(allowed),
         ethereum.Value.fromUnsignedBigInt(expiry),
         ethereum.Value.fromTupleArray(biding),
-        ethereum.Value.fromTupleArray(asking)
-      ]
+        ethereum.Value.fromTupleArray(asking),
+      ],
     );
 
     return changetype<Swaplace__makeSwapResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
@@ -410,7 +410,7 @@ export class Swaplace extends ethereum.SmartContract {
     allowed: Address,
     expiry: BigInt,
     biding: Array<Swaplace__makeSwapInputBidingStruct>,
-    asking: Array<Swaplace__makeSwapInputAskingStruct>
+    asking: Array<Swaplace__makeSwapInputAskingStruct>,
   ): ethereum.CallResult<Swaplace__makeSwapResultValue0Struct> {
     let result = super.tryCall(
       "makeSwap",
@@ -420,22 +420,22 @@ export class Swaplace extends ethereum.SmartContract {
         ethereum.Value.fromAddress(allowed),
         ethereum.Value.fromUnsignedBigInt(expiry),
         ethereum.Value.fromTupleArray(biding),
-        ethereum.Value.fromTupleArray(asking)
-      ]
+        ethereum.Value.fromTupleArray(asking),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<Swaplace__makeSwapResultValue0Struct>(value[0].toTuple())
+      changetype<Swaplace__makeSwapResultValue0Struct>(value[0].toTuple()),
     );
   }
 
   packData(allowed: Address, expiry: BigInt): BigInt {
     let result = super.call("packData", "packData(address,uint256):(uint256)", [
       ethereum.Value.fromAddress(allowed),
-      ethereum.Value.fromUnsignedBigInt(expiry)
+      ethereum.Value.fromUnsignedBigInt(expiry),
     ]);
 
     return result[0].toBigInt();
@@ -447,8 +447,8 @@ export class Swaplace extends ethereum.SmartContract {
       "packData(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(allowed),
-        ethereum.Value.fromUnsignedBigInt(expiry)
-      ]
+        ethereum.Value.fromUnsignedBigInt(expiry),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -461,29 +461,29 @@ export class Swaplace extends ethereum.SmartContract {
     let result = super.call(
       "parseData",
       "parseData(uint256):(address,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(config)]
+      [ethereum.Value.fromUnsignedBigInt(config)],
     );
 
     return new Swaplace__parseDataResult(
       result[0].toAddress(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_parseData(
-    config: BigInt
+    config: BigInt,
   ): ethereum.CallResult<Swaplace__parseDataResult> {
     let result = super.tryCall(
       "parseData",
       "parseData(uint256):(address,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(config)]
+      [ethereum.Value.fromUnsignedBigInt(config)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Swaplace__parseDataResult(value[0].toAddress(), value[1].toBigInt())
+      new Swaplace__parseDataResult(value[0].toAddress(), value[1].toBigInt()),
     );
   }
 
@@ -491,7 +491,7 @@ export class Swaplace extends ethereum.SmartContract {
     let result = super.call(
       "supportsInterface",
       "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceID)]
+      [ethereum.Value.fromFixedBytes(interfaceID)],
     );
 
     return result[0].toBoolean();
@@ -501,7 +501,7 @@ export class Swaplace extends ethereum.SmartContract {
     let result = super.tryCall(
       "supportsInterface",
       "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceID)]
+      [ethereum.Value.fromFixedBytes(interfaceID)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -613,7 +613,7 @@ export class CreateSwapCall__Inputs {
 
   get swap(): CreateSwapCallSwapStruct {
     return changetype<CreateSwapCallSwapStruct>(
-      this._call.inputValues[0].value.toTuple()
+      this._call.inputValues[0].value.toTuple(),
     );
   }
 }
