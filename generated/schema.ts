@@ -8,7 +8,7 @@ import {
   store,
   Bytes,
   BigInt,
-  BigDecimal
+  BigDecimal,
 } from "@graphprotocol/graph-ts";
 
 export class SwapAccepted extends Entity {
@@ -23,7 +23,7 @@ export class SwapAccepted extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type SwapAccepted must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type SwapAccepted must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set("SwapAccepted", id.toBytes().toHexString(), this);
     }
@@ -31,13 +31,13 @@ export class SwapAccepted extends Entity {
 
   static loadInBlock(id: Bytes): SwapAccepted | null {
     return changetype<SwapAccepted | null>(
-      store.get_in_block("SwapAccepted", id.toHexString())
+      store.get_in_block("SwapAccepted", id.toHexString()),
     );
   }
 
   static load(id: Bytes): SwapAccepted | null {
     return changetype<SwapAccepted | null>(
-      store.get("SwapAccepted", id.toHexString())
+      store.get("SwapAccepted", id.toHexString()),
     );
   }
 
@@ -145,7 +145,7 @@ export class SwapCanceled extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type SwapCanceled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type SwapCanceled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set("SwapCanceled", id.toBytes().toHexString(), this);
     }
@@ -153,13 +153,13 @@ export class SwapCanceled extends Entity {
 
   static loadInBlock(id: Bytes): SwapCanceled | null {
     return changetype<SwapCanceled | null>(
-      store.get_in_block("SwapCanceled", id.toHexString())
+      store.get_in_block("SwapCanceled", id.toHexString()),
     );
   }
 
   static load(id: Bytes): SwapCanceled | null {
     return changetype<SwapCanceled | null>(
-      store.get("SwapCanceled", id.toHexString())
+      store.get("SwapCanceled", id.toHexString()),
     );
   }
 
@@ -254,7 +254,7 @@ export class SwapCreated extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type SwapCreated must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type SwapCreated must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set("SwapCreated", id.toBytes().toHexString(), this);
     }
@@ -262,13 +262,13 @@ export class SwapCreated extends Entity {
 
   static loadInBlock(id: Bytes): SwapCreated | null {
     return changetype<SwapCreated | null>(
-      store.get_in_block("SwapCreated", id.toHexString())
+      store.get_in_block("SwapCreated", id.toHexString()),
     );
   }
 
   static load(id: Bytes): SwapCreated | null {
     return changetype<SwapCreated | null>(
-      store.get("SwapCreated", id.toHexString())
+      store.get("SwapCreated", id.toHexString()),
     );
   }
 
