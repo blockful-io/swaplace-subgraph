@@ -15,5 +15,6 @@ package-lock.json
 # Typechains assists with type safety when interacting with contracts.
 /typechain-types
 
-# Ponder log files generated upon execution.
+# Ponder generated files and folder upon execution.
 /.ponder
+/generated
