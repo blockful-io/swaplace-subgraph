@@ -1,3 +1,1 @@
 # Swaplace Ponder
-
-

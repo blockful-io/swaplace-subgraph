@@ -6,6 +6,7 @@
 
 # Dependencies.
 /node_modules
+package-lock.json
 
 # Build output of hardhat when using `npx harhat compile`.
 /artifacts
@@ -13,3 +14,6 @@
 
 # Typechains assists with type safety when interacting with contracts.
 /typechain-types
+
+# Ponder log files generated upon execution.
+/.ponder
