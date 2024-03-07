@@ -2,6 +2,7 @@
 
 # Env file avoid accidentally commiting secrets and passwords.
 .env
+.env.local
 
 # Dependencies.
 /node_modules
