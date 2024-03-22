@@ -32,7 +32,7 @@ ponder.on("Swaplace:SwapCreated", async ({ event, context }) => {
     return asset;
   });
 
-  let asking = contractResponse.biding.map((config) => {
+  let asking = contractResponse.asking.map((config) => {
     let asset: Asset = {
       addr: config.addr,
       amountOrId: config.amountOrId.toString(),
