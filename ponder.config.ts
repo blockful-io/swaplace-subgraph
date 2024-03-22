@@ -13,9 +13,10 @@ export default createConfig({
   contracts: {
     Swaplace: {
       abi: SwaplaceAbi,
-      address: "0xD8E3580C1b6f117c5b35DdD01dd9e50d9487501D",
+      address: "0xb7A42919ae66745Ffa69940De9d3DD99703eACb1",
       network: "sepolia",
-      startBlock: 4926698,
+      startBlock: 5484393,
+      
     },
   },
 });

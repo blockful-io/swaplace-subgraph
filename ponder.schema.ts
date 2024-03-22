@@ -1,11 +1,11 @@
 import { createSchema } from "@ponder/core";
 
 export default createSchema((p) => ({
-  Status: p.createEnum(["CREATED", "ACCEPTED", "CANCELED"]),
+  Status: p.createEnum(["created", "accepted", "canceled"]),
   Database: p.createTable({
     id: p.hex(),
     status: p.enum("Status"),
-    allowed: p.hex(),
+    allowed: p.bigint(),
     owner: p.hex(),
     expiry: p.bigint(),
     bid: p.string(),

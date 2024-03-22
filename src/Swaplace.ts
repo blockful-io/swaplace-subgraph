@@ -4,7 +4,7 @@ ponder.on("Swaplace:SwapCreated", async ({ event, context }) => {
   const { client } = context;
   const { Swaplace } = context.contracts;
   const { Database } = context.db;
-  const { swapId, owner, expiry } = event.args;
+  const { swapId, owner } = event.args;
 
   const contractResponse = await client.readContract({
     abi: Swaplace.abi,
@@ -12,6 +12,12 @@ ponder.on("Swaplace:SwapCreated", async ({ event, context }) => {
     functionName: "getSwap",
     args: [event.args.swapId],
   });
+
+  let config = contractResponse.config;
+
+  const expiry: bigint = BigInt(config) & ((BigInt(1) << BigInt(96)) - BigInt(1));
+  const allowed: any = BigInt(config) >> BigInt(96);
+  config = (allowed << BigInt(96)) | BigInt(expiry);
 
   interface Asset {
     addr: string;
@@ -31,7 +37,7 @@ ponder.on("Swaplace:SwapCreated", async ({ event, context }) => {
       addr: config.addr,
       amountOrId: config.amountOrId.toString(),
     };
-    return JSON.stringify(asset);
+    return asset;
   });
 
   let strinfiedBid = JSON.stringify(biding);
@@ -41,14 +47,41 @@ ponder.on("Swaplace:SwapCreated", async ({ event, context }) => {
     id: `0x${swapId}`,
     data: {
       swapId: swapId,
-      status: "CREATED",
+      status: "created",
       owner: owner,
-      allowed: contractResponse.allowed,
+      allowed: allowed,
       expiry: expiry,
       bid: strinfiedBid,
       ask: strinfiedAsk,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
+    },
+  });
+});
+
+ponder.on("Swaplace:SwapCanceled", async ({ event, context }) => {
+
+  const { Database } = context.db;
+  const { swapId } = event.args;
+
+  await Database.update({
+     id: `0x${swapId}`,
+    data: {
+      status: "canceled",
+    
+    },
+  });
+});
+
+ponder.on("Swaplace:SwapAccepted", async ({ event, context }) => {
+
+  const { Database } = context.db;
+  const { swapId } = event.args;
+
+  await Database.update({
+    id: `0x${swapId}`,
+    data: {
+      status: "accepted",
     },
   });
 });
