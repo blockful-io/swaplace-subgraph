@@ -5,7 +5,7 @@ export default createSchema((p) => ({
   Database: p.createTable({
     id: p.hex(),
     status: p.enum("Status"),
-    allowed: p.bigint(),
+    allowed: p.hex(),
     owner: p.hex(),
     expiry: p.bigint(),
     bid: p.string(),
